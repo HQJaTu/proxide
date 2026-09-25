@@ -117,9 +117,16 @@ certificate is through the `config ca` command.
 > proxide config ca --create
 > ```
 
-This command creates a `proxide_ca.crt` and `proxide_ca.key` pair. If these
-files exist, Proxide will automatically use them when monitoring or capturing
-traffic.
+This command creates a `proxide_ca.crt` and `proxide_ca.key` pair. Proxide
+uses them when monitoring or capturing traffic, and refuses to start if they
+are missing. Use `--ca-cert` and `--ca-key` to point to CA files elsewhere,
+or `--no-ca` to run without TLS interception.
+
+Clients must send the server name (SNI) in the TLS handshake. Proxide uses it
+to generate the server certificate. Connections without SNI are dropped.
+
+If connections fail, run Proxide with `--log proxide.log` and check the log
+for the reason.
 
 The second obstacle is ensuring the client won't reject the server certificates
 Proxide creates. This can be done by having the client ignore certificate
