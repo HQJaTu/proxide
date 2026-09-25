@@ -67,6 +67,7 @@ long periods with the only limit being the disk usage."
         .subcommand(
             SubCommand::with_name("config")
                 .about("Manage Proxide configuration")
+                .setting(AppSettings::SubcommandRequiredElseHelp)
                 // The "config ca" subcommand.
                 .subcommand(
                     SubCommand::with_name("ca")
