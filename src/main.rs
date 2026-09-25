@@ -352,7 +352,7 @@ async fn launch_proxide(
 
     let mut sockets: Vec<_> = Vec::new();
     for addr in addresses {
-        let addr = format!("{}:{}", addr, &options.listen_port);
+        let addr = format!("{}:{}", addr, options.listen_port);
         match TcpListener::bind(&addr).await {
             Err(_) => log::error!("Could not bind to {}", addr),
             Ok(s) => sockets.push(s),

@@ -6,7 +6,7 @@ macro_rules! long {
     };
 }
 
-pub fn setup_app(version: &str) -> App
+pub fn setup_app(version: &str) -> App<'_>
 {
     App::new("Proxide - HTTP2 debugging proxy")
         .version(version)
